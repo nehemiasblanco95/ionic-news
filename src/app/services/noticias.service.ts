@@ -38,7 +38,7 @@ this.categoriaPage++;
 this.categoriaPage = 1;
 this.categoria = categoria;
     }
-    return this.ejecutarQuery<RespuestaTopHeadlines>(`/top-headlines?country=us&category=${categoria}`);
+    return this.ejecutarQuery<RespuestaTopHeadlines>(`/top-headlines?country=us&category=${categoria}&page=${this.categoriaPage}`);
   }
 
 

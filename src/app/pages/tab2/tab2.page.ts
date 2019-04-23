@@ -9,7 +9,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page  implements OnInit{
+export class Tab2Page  implements OnInit {
 
   @ViewChild(IonSegment) segment: IonSegment;
 
@@ -25,15 +25,23 @@ ngOnInit() {
   this.cargarNoticias(this.categorias[0]);
 }
 
+loadData( event ) {
+  this.cargarNoticias( this.segment.value, event );
+    }
+
 cambioCategoria(event){
 this.noticias = [];
 this.cargarNoticias(event.detail.value);
 }
 
-cargarNoticias(categoria: string){
+cargarNoticias(categoria: string, event?) {
   this.noticiasService.getTopHeadlinesCategoria(categoria).subscribe(resp => {
     console.log(resp);
     this.noticias.push(...resp.articles);
+
+    if ( event) {
+      event.target.complete();
+    }
   });
 
 }
